@@ -1,0 +1,106 @@
+/* Фон, обочина и дорога */
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(to bottom, #99d8fa 0 74%, #79bf69 74% 100%);
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 95px;
+    background: #555b65;
+    border-top: 8px solid #dedede;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    bottom: 39px;
+    width: 100%;
+    height: 5px;
+    background: repeating-linear-gradient(to right, #fff 0 55px, transparent 55px 105px);
+}
+
+/* Кузов: ширина машины ровно 200 пикселей */
+.car {
+    position: absolute;
+    z-index: 1;
+    right: 50px;
+    bottom: 83px;
+    width: 200px;
+    height: 50px;
+    background: #e6433b;
+    border-radius: 14px 28px 8px 8px;
+    box-shadow: inset 0 -10px 0 #b92d2a;
+    animation: drive 4s ease-out both;
+}
+
+/* Два колеса без дополнительных HTML-элементов */
+.car::before,
+.car::after {
+    content: "";
+    position: absolute;
+    bottom: -14px;
+    width: 27px;
+    height: 27px;
+    border: 5px solid #252831;
+    border-radius: 50%;
+    background: #cbd2d8;
+}
+
+.car::before {
+    left: 24px;
+}
+
+.car::after {
+    right: 24px;
+}
+
+/* Крыша и окна */
+.roof {
+    position: absolute;
+    left: 38px;
+    bottom: 42px;
+    width: 124px;
+    height: 49px;
+    background: #cb302e;
+    clip-path: polygon(20% 0, 75% 0, 100% 100%, 0 100%);
+    border-radius: 12px 12px 0 0;
+}
+
+.roof::before,
+.roof::after {
+    content: "";
+    position: absolute;
+    top: 9px;
+    height: 30px;
+    background: #b8ebff;
+}
+
+.roof::before {
+    left: 25px;
+    width: 34px;
+    clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.roof::after {
+    left: 65px;
+    width: 35px;
+    clip-path: polygon(0 0, 70% 0, 100% 100%, 0 100%);
+}
+
+/* Начинает полностью за левым краем, останавливается в 50 px от правого */
+@keyframes drive {
+    from {
+        transform: translateX(calc(50px - 100vw));
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
